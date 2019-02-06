@@ -127,7 +127,7 @@ def movimientoComputador(tabla, computador, humano):
                 return i
     
     posibleMovimiento = []
-    listaMovimiento = [7, 9, 1, 3]
+    listaMovimiento = [8, 4, 2, 6]
     for i in listaMovimiento:
         if espacioVacio(tabla, i):
             posibleMovimiento.append(i)
@@ -136,14 +136,15 @@ def movimientoComputador(tabla, computador, humano):
 
     if espacioVacio(tabla, 5):
         return 5
-        
+
     posibleMovimiento = []
-    listaMovimiento = [8, 4, 2, 6]
+    listaMovimiento = [7, 9, 1, 3]
     for i in listaMovimiento:
         if espacioVacio(tabla, i):
             posibleMovimiento.append(i)
         if len(posibleMovimiento) != 0:
             return random.choice(posibleMovimiento)
+
         
 
 def tablaLlena(tabla):
