@@ -6,6 +6,16 @@ import random
 nombreJugador = ''
 
 def imprimirTabla(tabla):
+    print('═══════════════════════')
+    print('\
+ ╔═══╦═══╦═══╗\n\
+ ║ 7 ║ 8 ║ 9 ║\n\
+ ╠═══╬═══╬═══╣\n\
+ ║ 4 ║ 5 ║ 6 ║ Guia\n\
+ ╠═══╬═══╬═══╣\n\
+ ║ 1 ║ 2 ║ 3 ║\n\
+ ╚═══╩═══╩═══╝ ')
+    print('════════════════════════')
     print('\
  ╔═══╦═══╦═══╗\n\
  ║ {0} ║ {1} ║ {2} ║\n\
@@ -17,6 +27,7 @@ def imprimirTabla(tabla):
                tabla[7], tabla[8], tabla[9],
                tabla[4], tabla[5], tabla[6],
                tabla[1], tabla[2], tabla[3]))
+    print('════════════════════════')
 
 
 def letraJugador():
@@ -100,24 +111,40 @@ def movimientoHumano(tabla):
 
 
 def movimientoComputador(tabla, computador, humano):
+
     for i in range(1, 10):
         tablaTemporal = copiarTabla(tabla)
         if espacioVacio(tablaTemporal, i):
             colocar(tablaTemporal, computador, i)
             if ganar(tablaTemporal, computador):
                 return i
+                
     for i in range(1, 10):
         tablaTemporal = copiarTabla(tabla)
         if espacioVacio(tablaTemporal, i):
             colocar(tablaTemporal, humano, i)
             if ganar(tablaTemporal, humano):
                 return i
-    posiblesMovimientos = [] * 10
-    for i in range(1, 10):
+    
+    posibleMovimiento = []
+    listaMovimiento = [7, 9, 1, 3]
+    for i in listaMovimiento:
         if espacioVacio(tabla, i):
-            posiblesMovimientos.append(i)
-    return random.choice(posiblesMovimientos)
+            posibleMovimiento.append(i)
+        if len(posibleMovimiento) != 0:
+            return random.choice(posibleMovimiento)
 
+    if espacioVacio(tabla, 5):
+        return 5
+        
+    posibleMovimiento = []
+    listaMovimiento = [8, 4, 2, 6]
+    for i in listaMovimiento:
+        if espacioVacio(tabla, i):
+            posibleMovimiento.append(i)
+        if len(posibleMovimiento) != 0:
+            return random.choice(posibleMovimiento)
+        
 
 def tablaLlena(tabla):
     for i in range(1, 10):
