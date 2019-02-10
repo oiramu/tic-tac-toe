@@ -1,36 +1,31 @@
-#Escrito por Carlos Rodriguez
-#CC:193493462   CU:201711285186
-
+# Desarrolado Por Daniel Eduardo Polo Campo
+# ID 201711283751 / CC 1234097443
+# Desarrollado por Carlos Rodriguez
+# ID 201711285186 / CC 193493462
 import random
 
-nombreJugador = ''
 
 def imprimirTabla(tabla):
-    print('═══════════════════════')
-    print('\
- ╔═══╦═══╦═══╗\n\
- ║ 7 ║ 8 ║ 9 ║\n\
- ╠═══╬═══╬═══╣\n\
- ║ 4 ║ 5 ║ 6 ║ Guia\n\
- ╠═══╬═══╬═══╣\n\
- ║ 1 ║ 2 ║ 3 ║\n\
- ╚═══╩═══╩═══╝ ')
-    print('════════════════════════')
-    print('\
- ╔═══╦═══╦═══╗\n\
- ║ {0} ║ {1} ║ {2} ║\n\
- ╠═══╬═══╬═══╣\n\
- ║ {3} ║ {4} ║ {5} ║\n\
- ╠═══╬═══╬═══╣\n\
- ║ {6} ║ {7} ║ {8} ║\n\
- ╚═══╩═══╩═══╝ '.format(
-               tabla[7], tabla[8], tabla[9],
-               tabla[4], tabla[5], tabla[6],
-               tabla[1], tabla[2], tabla[3]))
-    print('════════════════════════')
+    print('╔══════════════════╗')
+    print('╠═══╦═══╦═══╗      ║')
+    print('║ 7 ║ 8 ║ 9 ║      ║')
+    print('╠═══╬═══╬═══╣      ║')
+    print('║ 4 ║ 5 ║ 6 ║ Guia ║')
+    print('╠═══╬═══╬═══╣      ║')
+    print('║ 1 ║ 2 ║ 3 ║      ║')
+    print('╠═══╩═══╩═══╝      ║')
+    print('╠══════════════════╣')
+    print('╠═══╦═══╦═══╗      ║')
+    print('║ '+tabla[7]+' ║ '+tabla[8]+' ║ '+tabla[9]+' ║      ║')
+    print('╠═══╬═══╬═══╣      ║')
+    print('║ '+tabla[4]+' ║ '+tabla[5]+' ║ '+tabla[6]+' ║      ║')
+    print('╠═══╬═══╬═══╣      ║')
+    print('║ '+tabla[1]+' ║ '+tabla[2]+' ║ '+tabla[3]+' ║      ║')
+    print('╠═══╩═══╩═══╝      ║')
+    print('╚══════════════════╝')
 
 
-def letraJugador():
+def letraJugador(nombreJugador):
     repetir = True
     while repetir:
         print("Juegas con X ó O?")
@@ -45,14 +40,14 @@ def letraJugador():
             print(nombreJugador + ", " + letra + " no es un caracter valido!")
 
 
-def primero():
+def primero(nombreJugador):
     if random.randint(0, 1) == 0:
         return 'AL-8999'
     else:
         return nombreJugador
 
 
-def volverJuego():
+def volverJuego(nombreJugador):
     repetir = True
     while repetir:
         print("¿Quieres volver a jugar Si o No?")
@@ -96,36 +91,36 @@ def espacioVacio(tabla, movimiento):
         return True
 
 
-def movimientoHumano(tabla):
+def movimientoHumano(tabla,nombreJugador):
     repetir = True
     while repetir:
         movimiento = input()
-        if movimiento == '1' or movimiento == '2' or movimiento == '3' or movimiento == '4' or movimiento == '5' or movimiento == '6' or movimiento == '7' or movimiento == '8' or movimiento == '9':
+        if movimiento == '1' or movimiento == '2' or movimiento == '3' or movimiento == '4' or movimiento == '5' or \
+                movimiento == '6' or movimiento == '7' or movimiento == '8' or movimiento == '9':
             if espacioVacio(tabla, int(movimiento)):
                 repetir = False
                 return int(movimiento)
             else:
-                print("Ese espacio está ocupado " + nombreJugador.lower())
+                print("Ese espacio está ocupado " + nombreJugador)
         else:
             print("Eso ni siquiera es un caracter, aprende a escribir primate")
 
 
 def movimientoComputador(tabla, computador, humano):
-
     for i in range(1, 10):
         tablaTemporal = copiarTabla(tabla)
         if espacioVacio(tablaTemporal, i):
             colocar(tablaTemporal, computador, i)
             if ganar(tablaTemporal, computador):
                 return i
-                
+
     for i in range(1, 10):
         tablaTemporal = copiarTabla(tabla)
         if espacioVacio(tablaTemporal, i):
             colocar(tablaTemporal, humano, i)
             if ganar(tablaTemporal, humano):
                 return i
-    
+
     posibleMovimiento = []
     listaMovimiento = [8, 4, 2, 6]
     for i in listaMovimiento:
@@ -145,7 +140,9 @@ def movimientoComputador(tabla, computador, humano):
         if len(posibleMovimiento) != 0:
             return random.choice(posibleMovimiento)
 
-        
+
+
+
 
 def tablaLlena(tabla):
     for i in range(1, 10):
@@ -154,48 +151,49 @@ def tablaLlena(tabla):
     return True
 
 
+nombre = input("Cómo te llamas?")
 while True:
     tabla = [' '] * 10
-    if nombreJugador == '':
-        nombreJugador = input("Cómo te llamas?\n")
-    humano = letraJugador()
+    humano = letraJugador(nombre)
     if humano == 'X':
         computador = 'O'
     else:
         computador = 'X'
-    turno = primero()
+    turno = primero(nombre)
     print(turno + ' comienza el turno')
     juegoCorre = True
     while juegoCorre:
-        if turno == nombreJugador:
+        if turno == nombre:
             imprimirTabla(tabla)
-            movimiento = movimientoHumano(tabla)
+            movimiento = movimientoHumano(tabla,nombre)
             colocar(tabla, humano, movimiento)
             if ganar(tabla, humano):
                 imprimirTabla(tabla)
-                print('Valla, esto si es una novedad, has ganado ' + nombreJugador.lower())
+                print('Valla, esto si es una novedad, has ganado ' + nombre.lower())
                 juegoCorre = False
             else:
                 if tablaLlena(tabla):
                     imprimirTabla(tabla)
-                    print('Empate!\nSorprendente para ser un descendiente del mono')
+                    print('Empate!')
+                    print('Sorprendente para ser un descendiente del mono')
                     juegoCorre = False
                 else:
-                    turno = 'computador'
+                    turno = 'AL-8999'
         else:
             movimiento = movimientoComputador(tabla, computador, humano)
             colocar(tabla, computador, movimiento)
             if ganar(tabla, computador):
                 imprimirTabla(tabla)
-                print('Has Perdido, eres patetico '+ nombreJugador.lower() +' >:)')
+                print('Has Perdido, eres patetico '+ nombre +' >:)')
                 juegoCorre = False
             else:
                 if tablaLlena(tabla):
                     imprimirTabla(tabla)
-                    print('Empate!\nHonores ' + nombreJugador.lower())
+                    print('Empate!')
+                    print('Honores ' + nombre)
                     juegoCorre = False
                 else:
-                    turno = nombreJugador
-    if volverJuego():
-        print('Esto fue muy divertido ' + nombreJugador.lower() + ' nwn')
+                    turno = nombre
+    if volverJuego(nombre):
+        print('Esto fue muy divertido ' + nombre + ' nwn')
         exit()
