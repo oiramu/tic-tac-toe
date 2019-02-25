@@ -1,0 +1,127 @@
+<aiml version="1.0.1" encoding="UTF-8">
+<!-- basic_chat.aiml -->
+
+
+//========================== Error de Entrada ===================================
+  <category>
+    <pattern> * </pattern>
+    <template> No tengo respuesta para eso. </template>
+  </category>
+//================================== Invocando a T ==============================
+
+    <category>
+        <pattern> T </pattern>
+            <template>
+                <random>
+                <li> Hola, ¿como estas? </li>
+                <li> Hola, ¿que hay de nuevo? </li>
+                <li> Hola, Que genial hablar contigo </li>
+                <li> Hey! ¿Que hay? </li>
+                <li> Hola... ¿que pasa? </li>
+                <li> Hola, ¿en que te puedo ayudar? </li>
+                <li> ¿Que tal? ¿En que te puedo ayudar? </li>
+                </random>
+            </template>
+    </category>
+
+    <category>
+        <pattern> * T </pattern>
+            <template>
+            <srai> T </srai>
+            </template>
+    </category>
+
+//================= Alarmas =====================================================
+    <category>
+        <pattern> ALARMA </pattern>
+            <template>
+                <random>
+                <li> ¡Claro! ¿Cual es la fecha y hora? </li>
+                <li> Porsupuesto, ¿Me regalas la fecha y la hora? </li>
+                </random>
+            </template>
+    </category>
+
+    <category>
+        <pattern> DESACTIVAR ALARMA </pattern>
+        <template> Alarma Desactivada Correctamente. </template>
+    </category>
+
+    <category>
+        <pattern> * ALARMA </pattern>
+            <template>
+            <srai> Alarma </srai>
+            </template>
+    </category>
+
+    <category>
+      <pattern> QUIERO UN *</pattern>
+      <template>
+         ¿Para cuando quieres el <star/> ?
+      </template>
+    </category>
+
+    <category>
+      <pattern> QUIERO UNA *</pattern>
+      <template>
+         ¿Para cuando quieres la <star/> ?
+      </template>
+    </category>
+
+//============================ Saludo ===========================================
+
+    <category>
+        <pattern> HOLA * </pattern>
+            <template>
+            <srai> Hola </srai>
+            </template>
+    </category>
+
+    <category>
+        <pattern> HOLA </pattern>
+            <template>Hola, ¿como te llamas?</template>
+    </category>
+
+    <category>
+        <pattern> HOLA </pattern>
+            <template>
+                <random>
+                <li>Hola <get name = "username"/>, ¿como estas?</li>
+                <li>Hola <get name = "username"/>, ¿que hay de nuevo?</li>
+                <li>Hola <get name = "username"/>, Que genial hablar contigo</li>
+                <li>Hey <get name = "username"/>! ¿Que hay?</li>
+                <li>Hola <get name = "username"/>e, ¿que pasa?</li>
+                <li>Hola <get name = "username"/>, no tengo animos de hablar ahora...</li>
+                </random>
+            </template>
+    </category>
+
+    <category>
+        <pattern> BIEN </pattern>
+            <template>
+                <random>
+                    <li>Eso es genial!</li>
+                </random>
+            </template>
+    </category>
+
+#=========================== Almacenar Nombre ==================================
+
+    <category>
+      <pattern> MI NOMBRE ES * </pattern>
+      <template>
+         Okey!<think><set name = "username"> <star/></set></think>
+      </template>
+    </category>
+
+    <category>
+      <pattern> Adios </pattern>
+      <template>
+         Adios <get name = "username"/> Gracias por la conversacioin!
+      </template>
+    </category>
+
+
+#===============================================================================
+
+</aiml>

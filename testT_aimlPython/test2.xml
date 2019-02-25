@@ -1,0 +1,89 @@
+<?xml version="1.0.1" encoding="UTF-8"?>
+<aiml>
+    <category>
+    <pattern>HOLA</pattern>
+        <template>
+            <random>
+                <li>hola :D</li>
+                <li>hola como estas ?</li>
+                <li>hola, como te llamas?</li>
+                <li>hola, cual es tu pelicula favorita?</li>
+            </random>
+        </template>
+    </category>
+    <category>
+    <pattern>_ HOLA *</pattern>
+        <template><srai>hola</srai></template>
+    </category>
+    <category>
+    <pattern> HOLA *</pattern>
+        <template><srai>hola</srai></template>
+    </category>
+    <category>
+    <pattern>_ HOLA </pattern>
+        <template><srai>hola</srai></template>
+    </category>
+    <category>
+    <pattern>_ HOLA *</pattern>
+        <template><srai>hola</srai></template>
+    </category>
+    <category>
+    <pattern> HOLA *</pattern>
+        <template><srai>hola</srai></template>
+    </category>
+    <category>
+    <pattern>_ HOLA </pattern>
+        <template><srai>hola</srai></template>
+    </category>
+    <category>
+      <pattern>YO SOY *</pattern>
+      <template>
+          ok <set name="nombre"><star/></set>
+      </template>
+    </category>
+    <category>
+      <pattern>_ YO SOY *</pattern>
+      <template>
+          ok <set name="nombre"><star  index = "2"/></set>
+      </template>
+  </category>
+    <category>
+      <pattern>ME LLAMO *</pattern>
+      <template>
+          ok <set name="nombre"><star/></set>
+      </template>
+  </category>
+    <category>
+      <pattern>_ ME LLAMO *</pattern>
+      <template>
+          ok <set name="nombre"><star index="2"/></set>
+      </template>
+  </category>
+    <category>
+      <pattern>MI NOMBRE ES *</pattern>
+      <template>
+          ok <set name="nombre"><star/></set>
+      </template>
+  </category>
+    <category>
+      <pattern>_ MI NOMBRE ES *</pattern>
+      <template>
+          ok <set name="nombre"><star index="2"/></set>
+      </template>
+  </category>
+    <category>
+      <pattern>_ MI * NOMBRE ES *</pattern>
+      <template>
+          ok <set name="nombre"><star index="3"/></set>
+      </template>
+  </category>
+  <category>
+      <pattern>QUE ES *</pattern>
+      <template>
+            <button>
+                <text>esto es <star/></text>
+                <url>https://www.wikipedia.org/wiki/<star/></url>
+            </button>
+        </template>
+  </category>
+</aiml>
